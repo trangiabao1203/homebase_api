@@ -283,3 +283,43 @@ Open a web browser and go to http://127.0.0.1:8000/admin or http://localhost:800
 user: `admin`
 pass: `admin`
 
+# Technical Dept
+In your project, there are areas of technical debt that need to be addressed for enhanced stability and functionality. Here's a revised outline of the issues:
+- Refine Django Admin Form Validation: The project requires improved validation mechanisms within Django admin forms to prevent data inconsistencies and ensure reliable data input.
+- Enhance API Exception Handling: The project needs advanced API exception handling to provide clear, informative error responses, improving the debugging process and user interaction with the API.
+
+# Integration
+After successfully accessing the admin page at http://localhost:8000/admin, you can use it to query or create data from the dashboard pages. Due to the missing validation and exception handling mentioned earlier, to facilitate easy operation, I will provide some dummy data samples for you to work with.
+
+You can test both API Postman/Swagger or in Admin Dashboard
+```json5
+// Users
+{
+    "fullName": "John Doe",
+    "phone": "+84966877382", // Vietnam phone format
+    "email": "john.doe@gmail.com",
+    "role": "user",
+    "gender": "male",
+    "birthday": "2024-01-01T00:00:00.000Z",
+    "image": null,
+    "thumbnail": null,
+    "status": "activated"
+}
+```
+
+```json5
+// Product
+{
+    "code": "PRODUCT_CODE",
+    "title": "Product name",
+    "subhead": null,
+    "description": null,
+    "type": "default",
+    "image": null,
+    "thumbnail": null,
+    "order": 1,
+    "price": 20000,
+    "stock": 30,
+    "status": "activated"
+}
+```

@@ -303,7 +303,8 @@ You can test both API Postman/Swagger or in Admin Dashboard
     "birthday": "2024-01-01T00:00:00.000Z",
     "image": null,
     "thumbnail": null,
-    "status": "activated"
+    "status": "activated",
+    "password": "Abc@123"
 }
 ```
 

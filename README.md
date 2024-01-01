@@ -106,9 +106,9 @@ This project is organized as a monorepo using Lerna and Nx. A monorepo allows yo
 
 To learn more about monorepos, Lerna, and Nx, you can refer to the following resources:
 
-- Monorepo Explained
-- Lerna Documentation
-- Nx Documentation
+- [Monorepo Explained](https://monorepo.tools)
+- [Lerna Documentation](https://lerna.js.org/docs/getting-started)
+- [Nx Documentation](https://nx.dev/getting-started/intro)
 
 Beside that, you can discovery my library for monorepo development at: JokTec Monorepo
 

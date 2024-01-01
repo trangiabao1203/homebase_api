@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  mongo:
+    container_name: homebase-mongo
+    image: mongo:7.0.2
+    ports:
+      - '27017:27017'
+    volumes:
+      - .docker/mongo/data:/data/db
+      - .docker/mongo/backup:/data/backup
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    networks:
+      - homebase-network
+    restart: always
+    logging:
+      options:
+        max-size: '100k'
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo db:27017/speech-api --quiet
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  minio:
+    container_name: homebase-minio
+    image: minio/minio
+    volumes:
+      - .docker/minio/data:/data
+    ports:
+      - "9000:9000"
+      - '9090:9090'
+    environment:
+      MINIO_ACCESS_KEY: accesskey
+      MINIO_SECRET_KEY: secretkey
+    restart: always
+    logging:
+      options:
+        max-size: '100k'
+    networks:
+      - homebase-network
+    command: server /data --console-address ":9090"
+
+# Docker Networks
+networks:
+  homebase-network:
+    name: homebase-network
+    driver: bridge
+
+# Docker Volumes
+volumes:
+  .docker:

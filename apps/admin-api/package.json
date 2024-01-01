@@ -1,0 +1,79 @@
+{
+  "name": "@hb/admin-api",
+  "description": "Homebase - Admin API Service",
+  "version": "0.0.0",
+  "author": "Bao Tran",
+  "private": true,
+  "license": "MIT",
+  "files": [
+    "dist",
+    "config.yml",
+    "migrations",
+    "k8s",
+    "Dockerfile",
+    "public",
+    "credentials",
+    "views"
+  ],
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "scripts": {
+    "clean": "rimraf -rf dist",
+    "purge": "rimraf -rf node_modules",
+    "format": "prettier \"./src/**/*.ts\" --ignore-path ./.prettierignore --write",
+    "lint": "eslint --fix \"./src/**/*.ts\" --quiet",
+    "prebuild": "yarn clean",
+    "prepublishOnly": "yarn build",
+    "dev": "nest start --watch -p tsconfig.json",
+    "build": "nest build -p tsconfig.json",
+    "serve": "node dist/main",
+    "dep:upgrade": "ncu -p yarn -f /^@joktec*/ -u",
+    "deploy": "publish-helm --chart-dir ./k8s/chart",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
+  },
+  "dependencies": {
+    "@joktec/core": "^0.0.105",
+    "@joktec/mongo": "^0.0.139",
+    "@joktec/storage": "^0.0.106",
+    "byte-length": "^1.0.2",
+    "gravatar": "^1.8.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "mime-types": "^2.1.35",
+    "sharp": "^0.32.5"
+  },
+  "devDependencies": {
+    "@types/gravatar": "^1.8.3",
+    "@types/lodash": "^4.14.197",
+    "@types/mime-types": "^2.1.4",
+    "@types/sharp": "^0.32.0"
+  },
+  "trustedDependencies": [
+    "sharp"
+  ],
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write --ignore-path ./.prettierignore",
+      "eslint --fix"
+    ]
+  },
+  "jest": {
+    "passWithNoTests": true,
+    "preset": "ts-jest",
+    "rootDir": "src",
+    "transform": {
+      "^.+\\.(t|s)s$": "ts-jest"
+    },
+    "coverageDirectory": "<rootDir>/../coverage/",
+    "collectCoverageFrom": [
+      "**/*.{ts,js}",
+      "!**/index.ts",
+      "!**/*.{d,enum}.ts"
+    ]
+  }
+}

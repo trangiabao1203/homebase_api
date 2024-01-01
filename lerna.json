@@ -1,0 +1,39 @@
+{
+  "packages": [
+    "packages/*",
+    "apps/*"
+  ],
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "**/*.md",
+        "**/__fixtures__/**",
+        "**/__tests__/**",
+        "**/k8s/**",
+        "**/docker-compose*",
+        "**/Makefile*"
+      ],
+      "message": "ci(release): publish",
+      "registry": "https://registry.npmjs.org/",
+      "conventionalCommits": true,
+      "version": {
+        "allowBranch": [
+          "main",
+          "master",
+          "staging",
+          "develop",
+          "hotfix/*"
+        ]
+      }
+    },
+    "bootstrap": {
+      "ignore": "component-*",
+      "npmClientArgs": [
+        "--no-package-lock"
+      ]
+    }
+  },
+  "version": "independent",
+  "npmClient": "yarn",
+  "useNx": true
+}
